@@ -1,0 +1,64 @@
+{% extends "accounting/layout.html" %}
+
+{% block content %}
+<div class="container-fluid pt-5">
+    <div class="row mt-5 ">
+        <div class="col-sm-12 ">
+            <h1 class="text-center mb-5 pb-4">Reports</h1>
+            <div class="card">
+                <div class="card-header card-header-primary">
+                  <h3 class="card-title">Reports</h3>
+                  <p class="card-category">which belong to you
+                  </p>
+              </div>
+              <div class="card-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                        <ol class="list-group check-list">
+
+
+        <!-- <li class="alert alert-success">
+            <a href="{{ step.get_action_url }}" class="btn btn-primary pull-right">Take care of that</a>
+            <h4>gggg</h4>
+            <p>hhh</p>
+        </li> -->
+
+        <li class="list-group-item clearfix disabled">
+         <a href="{% url 'reports:tax-report' %}"><h3 >Tax Report</h3></a>
+         <p> Prepare the tax report for your tax period (defined in the <a href="{% url 'reports:settings-financial' %}">financial settings</a>)
+         </p>
+     </li>
+     <li class="list-group-item clearfix disabled">
+
+        <a href="{% url 'reports:profit-and-loss-report' %}"><h3 >Profit and Loss</h3></a>
+        <p> Know how your business is doing</p>
+    </li>
+
+    <li class="list-group-item clearfix disabled">
+
+        <a href="{% url 'reports:pay-run-report' %}"><h3 >Pay run</h3></a>
+        <p>
+        How much payroll you should keep</p>
+    </li>
+        <li class="list-group-item clearfix disabled">
+
+        <a href="{% url 'reports:invoice-details-report' %}"><h3 >Invoice details</h3></a>
+        <p>
+        How much payroll you should keep</p>
+    </li>
+
+
+</ol>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,256 @@
+{% extends "accounting/layout.html" %}
+
+{% load currency_filters %}
+
+
+{% block content %}
+
+        <div class="container-fluid">
+        	<div class="row">
+        		<div class="col-md-3 mt-5">
+        			
+        		</div>
+        		<div class="col-md-9 mt-5  mb-5">
+        			    <h2>
+        {{ organization.display_name }} <small>/ organization detail</small>
+        <div class="btn-group pull-right">
+            <a href="{% url 'books:organization-edit' organization.pk %}" class="btn btn-default" role="button">Edit</a>
+        </div>
+    </h2>
+             
+        		</div>
+        	</div>
+          
+    </div>
+
+     <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">content_copy</i>
+                  </div>
+                  <p class="card-category">Turnover</p>
+                  <h3 class="card-title">{{ organization.turnover_excl_tax|currency|default:"-" }}
+                    <!-- <small>GB</small> -->
+                  </h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons text-danger">warning</i>
+                    <a href="#pablo">Get More Space...</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-success card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">store</i>
+                  </div>
+                  <p class="card-category">Profits</p>
+                  <h3 class="card-title">{{ organization.profits|currency|default:"-" }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">date_range</i> Last 24 Hours
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-danger card-header-icon">
+                  <div class="card-icon">
+                    <i class="material-icons">info_outline</i>
+                  </div>
+                  <p class="card-category">Tax Provisionning</p>
+                  <h3 class="card-title">{{ organization.tax_provisionning|currency|default:0 }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">local_offer</i> Tracked from Github
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                <div class="card-header card-header-info card-header-icon">
+                  <div class="card-icon">
+                    <i class="fa fa-twitter"></i>
+                  </div>
+                  <p class="card-category">Due payments</p>
+                  <h3 class="card-title">{{ organization.overdue_total|currency|default:0 }}</h3>
+                </div>
+                <div class="card-footer">
+                  <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!-- 
+    <div class="row placeholders">
+        <div class="col-xs-6 col-sm-3">
+            <div class="figure">
+                <h4>{{ organization.turnover_excl_tax|currency|default:"-" }}</h4>
+                <span class="text-muted">Turnover</span>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="figure">
+                <h4>{{ organization.profits|currency|default:"-" }}</h4>
+                <span class="text-muted">Profits</span>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="figure">
+                <h4>{{ organization.tax_provisionning|currency|default:0 }}</h4>
+                <span class="text-muted">Tax Provisionning</span>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3">
+            <div class="figure">
+                <h4>{{ organization.overdue_total|currency|default:0 }}</h4>
+                <span class="text-muted">Due payments</span>
+            </div>
+        </div>
+    </div> -->
+<div class="row">
+    <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Invoices</h4>
+                  <p class="card-category"> what you earn</p>
+
+                        <a href="{% url 'books:invoice-create' %}" class="btn btn-primary btn-md" role="button">
+                            Add an invoice
+                        </a>
+                    
+                </div>
+
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>#</th>
+                      <th>Client</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                    </thead>
+                    <!-- <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Dakota Rice</td>
+                        <td>$36,738</td>
+                        <td>Niger</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Minerva Hooper</td>
+                        <td>$23,789</td>
+                        <td>Curaçao</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Sage Rodriguez</td>
+                        <td>$56,142</td>
+                        <td>Netherlands</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Philip Chaney</td>
+                        <td>$38,735</td>
+                        <td>Korea, South</td>
+                      </tr>
+                    </tbody> -->
+                  </table>
+                </div>
+              </div>
+            </div>
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Bills</h4>
+                  <p class="card-category"> what you earn</p>
+                                          <a href="{% url 'books:invoice-create' %}" class="btn btn-primary btn-md" role="button">
+                            Add an invoice
+                        </a>
+                </div>
+                <div class="card-body table-responsive">
+                  <table class="table table-hover">
+                    <thead class="text-warning">
+                      <th>#</th>
+                      <th>Client</th>
+                      <th>Total</th>
+                      <th>Action</th>
+                    </thead>
+                    <!-- <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Dakota Rice</td>
+                        <td>$36,738</td>
+                        <td>Niger</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Minerva Hooper</td>
+                        <td>$23,789</td>
+                        <td>Curaçao</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Sage Rodriguez</td>
+                        <td>$56,142</td>
+                        <td>Netherlands</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Philip Chaney</td>
+                        <td>$38,735</td>
+                        <td>Korea, South</td>
+                      </tr>
+                    </tbody> -->
+                  </table>
+                </div>
+              </div>
+            </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading overflow-box">
+                    <h4 class="pull-left">
+                        Invoices <small>/ what you earn</small>
+                    </h4>
+                    <div class="btn-group pull-right">
+                        <a href="{% url 'books:invoice-create' %}" class="btn btn-primary btn-md" role="button">
+                            Add an invoice
+                        </a>
+                    </div>
+                </div>
+                {% include "books/_generics/sale_list.html" with sales=invoices hide_edit=True %}
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading overflow-box">
+                    <h4 class="pull-left">Bills <small> / what you owe</small></h4>
+                    <div class="btn-group pull-right">
+                        <a href="{% url 'books:bill-create' %}" class="btn btn-primary btn-md" role="button">
+                            Add an bill
+                        </a>
+                    </div>
+                </div>
+                {% include "books/_generics/sale_list.html" with sales=bills hide_edit=True %}
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

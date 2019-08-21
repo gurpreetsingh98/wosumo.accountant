@@ -1,0 +1,70 @@
+{% extends "accounting/layout.html" %}
+{% load currency_filters %}
+
+{% block content %}
+
+
+    <div class="row mt-5 pt-5">
+    <div class="col-lg-11 col-md-12 ml-5 mt-5">
+              <div class="card mt-5  pr-5 pl-5">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Profit and Loss</h4>
+                  <p class="card-category">how ur doin'?</p>
+
+                   
+                    
+                </div>
+    <table class="table mt-5 ">
+        <thead>
+            <tr>
+                <th></th>
+                {% for key_date in summaries.keys %}
+                <th class="text-right">{{ key_date|date:"b" }}</th>
+                {% endfor %}
+                <th class="text-right">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="empty-line"><td></td></tr>
+            <tr>
+                <td colspan="{{ summaries.keys|length|add:'2' }}"><strong>Income</strong></td>
+            </tr>
+            <tr class="text-right">
+                <td></td>
+                {% for summary in summaries.values %}
+                <td>{{ summary.sales_amount|currency }}</td>
+                {% endfor %}
+                <td>{{ total_summary.sales_amount|currency }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr class="empty-line"><td></td></tr>
+            <tr>
+                <td colspan="{{ summaries.keys|length|add:'2' }}"><strong>Expenses</strong></td>
+            </tr>
+            <tr class="text-right">
+                <td></td>
+                {% for summary in summaries.values %}
+                <td>{{ summary.expenses_amount|currency }}</td>
+                {% endfor %}
+                <td>{{ total_summary.expenses_amount|currency }}</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr class="empty-line"><td></td></tr>
+            <tr>
+                <td colspan="{{ summaries.keys|length|add:'2' }}"><strong>Net Profit</strong></td>
+            </tr>
+            <tr class="text-right">
+                <td></td>
+                {% for summary in summaries.values %}
+                <td>{{ summary.net_profit|currency }}</td>
+                {% endfor %}
+                <td>{{ total_summary.net_profit|currency }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock content %}

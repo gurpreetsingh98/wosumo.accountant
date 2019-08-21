@@ -1,0 +1,29 @@
+{% load bootstrap3 introspection_filters %}
+
+{% if return_url %}
+<input type="hidden" name="_return_url" value="{{ return_url }}">
+{% endif %}
+
+{% bootstrap_form_errors form %}
+<div class="row">
+            <div class="col-md-12 px-5 ">
+              <div class="card">
+                
+                <div class="card-body">
+{% for field in form %}
+    {% if form|is_select2_field:field %}
+    
+    <div class="form-group">
+    <label class="bmd-label-floating"  for="{{ field.id_for_label }}">{{ field.label }}</label>
+     {% bootstrap_field field %}
+     </div>
+
+
+    {% else %}
+        {% bootstrap_field field %}
+    {% endif %}
+{% endfor %}
+ </div>
+</div>
+</div>
+</div>

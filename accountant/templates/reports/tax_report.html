@@ -1,0 +1,70 @@
+{% extends "accounting/layout.html" %}
+{% load currency_filters %}
+
+{% block content %}
+
+    <div class="row mt-5 pt-5">
+    <div class="col-lg-12 col-md-12 mt-5">
+              <div class="card mt-5">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Tax Report </h4>
+                  <p class="card-category">don't spend that money</p>
+
+                   
+                    
+                </div>
+        
+                <div class="card-body table-responsive">
+
+            <h4 class="card-title">{{ form_title }}</h4>
+            {% include "reports/_partials/period_form.html" with form=form %}
+        </div>
+
+    <hr>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tax Name</th>
+                <th>Taxable Amount</th>
+                <th>Taxes</th>
+            </tr>
+        </thead>
+        {% for summary in tax_summaries %}
+        <tbody>
+            <tr class="empty-line"><td></td></tr>
+            <tr>
+                <td><strong>{{ summary.tax_rate }}</strong></td>
+                <td></td>
+                <td></td>
+            <tr>
+                <td>
+                    <abbr href="#" data-toggle="tooltip" data-placement="top" title="The amount includes fully or partially paid invoices">
+                        Collected
+                    </abbr>
+                </td>
+                <td>{{ summary.taxable_amount|currency }}</td>
+                <td>{{ summary.collected_taxes|currency }}</td>
+            </tr>
+            <tr>
+                <td>Expenses</td>
+                <td>{{ summary.expenses_amount|currency }}</td>
+                <td>{{ summary.deductible_taxes|currency }}</td>
+            </tr>
+            <tr>
+                <td>NET</td>
+                <td>{{ summary.net_amount|currency }}</td>
+                <td>{{ summary.net_taxes|currency }}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+                </div>
+              </div>
+            </div>
+
+
+
+</div>
+{% endblock content %}

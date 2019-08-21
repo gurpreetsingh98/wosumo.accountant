@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load avatar_tags %}
+{% load static %}
+
+{% block bodyclassname %}body--home{% endblock %}
+
+{% block maincontent %}
+
+{% block header %}
+<nav class="navbar navbar-expand-lg  navbar-absolute fixed-top">
+    <div class="container">
+      <div class="navbar-wrapper">
+        <a class="navbar-brand" href="/">signup</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon icon-bar"></span>
+        <span class="navbar-toggler-icon icon-bar"></span>
+        <span class="navbar-toggler-icon icon-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          
+            <li class="nav-item ">
+<a class="link--bold" href="{% url 'account_signup' %}" class="nav-link">
+              <i class="material-icons">person_add</i> Register
+            </a>
+          </li>  
+          <li class="nav-item  active "><a  href="{% url 'account_login' %}" class="nav-link">
+              <i class="material-icons">fingerprint</i> Login
+            </a>
+          </li>
+          
+      </div>
+    </div>
+  </nav>
+{% endblock %}
+
+<header class="mt-5 pt-5">
+       <h1 class="main-title" style="text-align: center;">Marketing optimization Tool</h1>
+                
+
+                <p class="lead" style="text-align: center;">The open-sourced solution that make accounting accessible to small businnesses</p>
+
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
+            
+                <form class="form-inline signup-form" method="post" action="{% url 'account_signup' %}">
+                    {% csrf_token %}
+
+              <div class="card card-login card-hidden">
+                <div class="card-header card-header-rose text-center">
+                  <h4 class="card-title">Sign up</h4>
+                  
+                </div>
+                <div class="card-body ">
+                  <p class="card-description text-center">Or Be Classical</p>
+                  <span class="bmd-form-group">
+                    <div class="input-group mb-3 mt-3">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">email</i>
+                        </span>
+                      </div>
+                        <label class="sr-only" for="id_email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="id_email" placeholder="Email Address">
+                    </div>
+                  </span>
+                  <span class="bmd-form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="material-icons">lock_outline</i>
+                        </span>
+                      </div>
+                      <input type="password" class="form-control" placeholder="Password...">
+                    </div>
+                  </span>
+                </div>
+                <div class="card-footer justify-content-center">
+
+                    <button type="submit" class="btn btn-rose btn-link btn-lg">Sign up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+      </div>
+
+
+
+</header>
+
+{% block footer %}
+<footer class="main-foot main-foot--fixed-bottom">
+    {% include "_partials/footer.html" %}
+</footer>
+{% endblock %}
+{% endblock maincontent %}
+

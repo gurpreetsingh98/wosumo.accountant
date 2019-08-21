@@ -1,0 +1,33 @@
+{% extends "accounting/layout.html" %}
+{% load currency_filters %}
+
+{% block content %}
+
+
+<div class="row mt-5 pt-5">
+    <div class="col-lg-8 col-md-12 mt-5">
+              <div class="card mt-5">
+                <div class="card-header card-header-warning">
+                  <h4 class="card-title">Tax Rates </h4>
+                  <p class="card-category">which belong to you</p>
+
+                   
+                    
+                </div>
+
+                <div class="card-body table-responsive">
+    {% include "books/_partials/tax_rate_list.html" with tax_rates=tax_rates %}
+
+<a href="{% url 'books:tax_rate-create' %}" class="btn btn-primary btn-lg" role="button">
+        Add a Tax rate
+    </a>
+    </div>
+              </div>
+            </div>
+
+
+
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "accounting/layout.html" %}
+{% load bootstrap3 introspection_filters %}
+
+{% block head %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+
+<div class="row mt-5 pt-5">
+    <div class="col-lg-10 col-md-12 mt-5 ml-5">
+      <div class="card mt-5 pl-5 pr-5">
+        <div class="card-header card-header-warning">
+
+    {% if object.pk %}
+   <h4 class="card-title">Edit a {{ form|get_form_model_verbose_name }}</h4>
+    {% else %}
+    <h4 class="card-title">Create a {{ form|get_form_model_verbose_name }}</h4>
+    {% endif %}
+</div>  
+
+    <form action="." method="post" class="form">
+        {% csrf_token %}
+
+        {% include "_partials/form_fields.html" with form=form %}
+
+        {% buttons %}
+            <button type="submit" class="btn btn-success mr-5">
+                {% if object.pk %}
+                    {% bootstrap_icon "hand-right" %} Save changes
+                {% else %}
+                    {% bootstrap_icon "thumbs-up" %} Send creation
+                {% endif %}
+            </button>
+        {% endbuttons %}
+    </form>
+              </div>
+            </div>
+
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{
+  "name": "Accountant",
+  "description": "Accounting made accessible for small businesses and sole proprietorships through a simple Django project.",
+  "keywords": [
+    "accounting",
+    "business",
+    "money"
+  ],
+  "repository": "https://github.com/dulacp/Accountant",
+  "addons": [
+    "heroku-postgresql:hobby-dev",
+    "pgbackups:auto-week",
+    "mandrill:starter",
+    "newrelic:wayne"
+  ],
+  "env": {
+    "BUILDPACK_URL": "https://github.com/heroku/heroku-buildpack-python",
+    "DJANGO_SETTINGS_MODULE": "accountant.settings.prod",
+    "SECRET_KEY": {
+      "description": "This gets generated",
+      "generator": "secret"
+    },
+    "LOCAL_SERVER": "0",
+    "SITE_MAIN_DOMAIN": "accountant-x.herokuapp.com"
+  },
+  "scripts": {
+    "postdeploy": "python manage.py migrate"
+  }
+}
